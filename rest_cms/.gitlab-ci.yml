@@ -1,0 +1,22 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  stage: test
+  script: echo "testing"
+
+build:
+  stage: build
+  script: echo "building"
+
+deploy:
+  stage: deploy
+  script: 
+    - echo "deploy to production"
+  environment:
+    name: prod_cms
+    url: https://api.agiantagravic.com
+  only:
+  - master

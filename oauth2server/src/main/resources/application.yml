@@ -1,0 +1,45 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: dev
+---
+signing:
+  key: "12345678"
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/em
+    username: em
+    password: banesullivan
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins: localhost
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/em
+    username: em
+    password: banesullivan
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins: (.+\.)*agiantagravic\.com
+signing:
+  key: "345345fsdgsf5345"

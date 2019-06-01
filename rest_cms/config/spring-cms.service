@@ -1,0 +1,12 @@
+[Unit]
+Description=A Spring Boot application
+After=syslog.target
+
+[Service]
+User=em
+Environment=SPRING_PROFILES_ACTIVE=prod
+ExecStart=/usr/bin/java -jar --add-modules=java.xml.bind /home/em/back/target/cms-1.0.0.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
