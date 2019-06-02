@@ -1,0 +1,48 @@
+security:
+ oauth2:
+  resource:
+    userInfoUri: http://localhost:8888/user
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins: localhost
+      exposure:
+        include: "*"
+  endpoint:
+    routes:
+      enabled: true
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+spring:
+  profiles:
+    active: dev
+zuul.routes.discovery.url: http://localhost:8761
+---
+signing:
+  key: "12345678"
+spring:
+  profiles: dev
+
+---
+spring:
+  profiles: prod
+signing:
+  key: "345345fsdgsf5345"
+security:
+ oauth2:
+  resource:
+    userInfoUri: https://auth.agiantagravic.com/user
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins: localhost
+      exposure:
+        include: health, metrics
